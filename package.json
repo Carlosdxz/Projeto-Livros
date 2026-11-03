@@ -1,0 +1,12 @@
+{
+  "name": "sistema-gestao-livros",
+  "version": "1.0.0",
+  "description": "Sistema de Gestão de Livros - CRUD + API REST pura",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Carlos",
+  "license": "ISC"
+}

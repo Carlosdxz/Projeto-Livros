@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Livros | Acervo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Sistema de Gestão de Livros</h1>
+      <p>Organize a sua biblioteca pessoal e acompanhe as suas leituras</p>
+    </header>
+
+    <!-- Área de Alertas Globais -->
+    <div id="mensagem-alerta" class="alerta oculto"></div>
+
+    <!-- Seção de Consulta Externa (Open Library) -->
+    <section class="card">
+      <h2>1. Pesquisar na Open Library (Preenchimento Automático)</h2>
+      <div class="busca-container">
+        <input type="text" id="termo-openlibrary" placeholder="Digite o título do livro para pesquisar...">
+        <button id="btn-buscar-api" class="btn btn-secondary">Pesquisar na API Externa</button>
+      </div>
+      <div id="loading-api" class="oculto">A consultar a Open Library...</div>
+      <div id="resultado-api" class="resultado-busca-container"></div>
+    </section>
+
+    <!-- Formulário de Cadastro e Edição -->
+    <section class="card">
+      <h2 id="form-titulo">2. Registar Novo Livro</h2>
+      <form id="livro-form">
+        <input type="hidden" id="livro-id">
+        <input type="hidden" id="capa-url">
+
+        <div class="grid-form">
+          <div class="campo">
+            <label for="titulo">Título *</label>
+            <input type="text" id="titulo" required placeholder="Ex: Dom Casmurro">
+          </div>
+
+          <div class="campo">
+            <label for="autor">Autor *</label>
+            <input type="text" id="autor" required placeholder="Ex: Machado de Assis">
+          </div>
+
+          <div class="campo">
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" placeholder="Ex: 9788535914849">
+          </div>
+
+          <div class="campo">
+            <label for="anoPublicacao">Ano de Publicação *</label>
+            <input type="number" id="anoPublicacao" required placeholder="Ex: 1899" min="0" max="2100">
+          </div>
+
+          <div class="campo">
+            <label for="genero">Género Literário *</label>
+            <input type="text" id="genero" required placeholder="Ex: Romance, Ficção...">
+          </div>
+
+          <div class="campo">
+            <label for="status">Situação de Leitura *</label>
+            <select id="status" required>
+              <option value="Quero ler">Quero ler</option>
+              <option value="Lendo">Lendo</option>
+              <option value="Concluído">Concluído</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="preview-capa-container" class="oculto">
+          <p><strong>Capa Selecionada:</strong></p>
+          <img id="preview-capa" src="" alt="Capa" width="80">
+        </div>
+
+        <div class="form-acoes">
+          <button type="submit" id="btn-submit" class="btn btn-primary">Salvar Livro</button>
+          <button type="button" id="btn-cancelar" class="btn btn-muted oculto">Cancelar Edição</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Listagem e Pesquisa Local -->
+    <section class="card">
+      <div class="listagem-header">
+        <h2>3. Acervo de Livros</h2>
+        <div class="filtro-container">
+          <input type="text" id="filtro-titulo" placeholder="Pesquisar no acervo por título...">
+        </div>
+      </div>
+
+      <div class="tabela-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Capa</th>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>ISBN</th>
+              <th>Ano</th>
+              <th>Género</th>
+              <th>Estado</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-livros">
+            <!-- Linhas preenchidas via JavaScript -->
+          </tbody>
+        </table>
+        <p id="tabela-vazia" class="mensagem-vazia oculto">Nenhum livro registado ou correspondente à pesquisa.</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
